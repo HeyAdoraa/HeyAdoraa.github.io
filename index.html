@@ -46,10 +46,59 @@
         }
 
         /* Estilo para o GIF */
+        .gif-container {
+            position: relative;
+        }
+
         .gif-container img {
             width: 300px; /* Ajusta o tamanho do GIF */
             height: auto; /* Mantém a proporção do GIF */
             margin-top: 20px;
+        }
+
+        /* Estilo para os corações */
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none; /* Impede a interação com os corações */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Quando o mouse passa sobre o GIF */
+        .gif-container:hover .hearts {
+            opacity: 1;
+            animation: hearts 1s infinite;
+        }
+
+        /* Animação dos corações */
+        @keyframes hearts {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-30px) scale(1.5);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-60px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Criando os corações */
+        .hearts::before, .hearts::after {
+            content: '❤️';
+            font-size: 30px;
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .hearts::after {
+            animation: hearts 1.5s infinite;
         }
     </style>
 </head>
@@ -61,6 +110,8 @@
         <!-- Exemplo de GIF antes do botão -->
         <div class="gif-container">
             <img src="https://media.giphy.com/media/f0pYRrCkBs8gg/giphy.gif" alt="GIF Pokémon" />
+            <!-- Div para os corações -->
+            <div class="hearts"></div>
         </div>
 
         <!-- Botão que redireciona para outra página -->
